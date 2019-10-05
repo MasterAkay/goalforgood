@@ -1,0 +1,56 @@
+
+  <form class="login-container" #f = "ngForm" (ngSubmit)="f.form.valid && sendDetails()">
+  	<div class="row offset-sm-4"><h2>Login Portal</h2></div>
+    <div class="form-group row">
+      <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="inputEmail3" placeholder="Email" name="email" 
+        [(ngModel)]="model.email"
+        #email = "ngModel"
+        [ngClass]="{'is-invalid':f.submitted && email.invalid}"
+        required email/>
+        <div *ngIf="f.submitted && email.invalid" class="invalid-input">
+          <!-- Individual error -->
+          <div *ngIf="email.errors?.required">email is empty</div>
+          <div *ngIf="email.errors?.email">email is not valid</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="password" [(ngModel)]="model.password"
+        #pwd = "ngModel"
+        [ngClass]="{'is-invalid':f.submitted && pwd.invalid}"
+        required/>
+        <div *ngIf="f.submitted && pwd.invalid" class="invalid-input">
+          <!-- Individual error -->
+          <div *ngIf="pwd.errors?.required">Password is empty</div>
+        </div>
+      </div>
+    </div>
+    <fieldset class="form-group row">
+      
+      <div class="col-sm-10">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="1" [(ngModel)]="model.usertype" name="usertype" checked>
+            Customer
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" name="usertype" value="2" [(ngModel)]="model.usertype">
+            Internal Employees
+          </label>
+        </div>
+        
+      </div>
+    </fieldset>
+    
+    <div class="form-group row">
+      <div class="offset-sm-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Sign in</button>
+      </div>
+    </div>
+  </form>
